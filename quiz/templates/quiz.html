@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Math Quiz</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Math Quiz</h1>
+
+    <p class="question">What is {{ num1 }} + {{ num2 }} ?</p>
+
+    <input type="number" id="answer" placeholder="Enter your answer">
+
+    <button onclick="checkAnswer()">Submit</button>
+
+    <p id="result"></p>
+
+</div>
+
+<script>
+
+function checkAnswer(){
+
+    let answer = parseInt(document.getElementById("answer").value)
+    let correct = Number("{{ num1 }}") + Number("{{ num2 }}")
+
+    if(answer === correct){
+        document.getElementById("result").innerHTML = "Correct!"
+        document.getElementById("result").style.color = "green"
+    }
+    else{
+        document.getElementById("result").innerHTML = "Incorrect"
+        document.getElementById("result").style.color = "red"
+    }
+
+    setTimeout(function(){
+        location.reload()
+    },1500)
+
+}
+
+</script>
+
+</body>
+</html>
