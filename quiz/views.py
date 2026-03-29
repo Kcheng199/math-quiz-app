@@ -1,3 +1,4 @@
+# Generates random numbers for quiz questions
 import random
 from django.shortcuts import render
 
