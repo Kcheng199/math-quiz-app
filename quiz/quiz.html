@@ -1,22 +1,17 @@
+<!-- added layout -->
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Math Quiz</title>
+
 </head>
-
+    <title>Math Quiz</title></head>
 <body>
-
 <h1>Math Quiz</h1>
-
 <p>What is {{ num1 }} + {{ num2 }} ?</p>
-
 <input type="number" id="answer">
-
 <button onclick="checkAnswer()">Submit</button>
-
 <p id="result"></p>
-
 <script>
 
 function checkAnswer(){
@@ -31,7 +26,6 @@ function checkAnswer(){
     else{
         document.getElementById("result").innerHTML = "Incorrect"
     }
-
 }
 
 </script>
