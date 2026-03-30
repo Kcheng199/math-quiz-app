@@ -1,6 +1,7 @@
-{% load static %}
 <!DOCTYPE html>
 <html>
+
+{% load static %}
 
 <head>
     <title>Math Quiz</title>
@@ -12,11 +13,12 @@
 <div class="container">
 
     <h1>Math Quiz</h1>
-
+    <p id="timer">Time left: 10</p>
+    <p id="score">Score: 0</p>
+    <p id="streak">Streak: 0</p>
     <p class="question">What is {{ num1 }} + {{ num2 }} ?</p>
-
-    <input type="number" id="answer" placeholder="Enter your answer">
-
+    <input type="number" id="answer">
+    
     <button onclick="checkAnswer()">Submit</button>
 
     <p id="result"></p>
@@ -25,24 +27,64 @@
 
 <script>
 
+var timeLeft = 10;
+var score = 0;
+var streak = 0;
+
+document.getElementById("timer").innerHTML = "Time left: " + timeLeft;
+
+function countdown(){
+
+    timeLeft = timeLeft - 1;
+
+    document.getElementById("timer").innerHTML = "Time left: " + timeLeft;
+
+    if(timeLeft <= 3){
+        document.getElementById("timer").style.background = "darkred";
+    }
+
+    if(timeLeft <= 0){
+        document.getElementById("result").innerHTML = "Time's up!";
+        clearInterval(timerInterval);
+
+        setTimeout(function(){
+            location.reload();
+        }, 1500);
+    }
+}
+
+var timerInterval = setInterval(countdown, 1000);
+
 function checkAnswer(){
 
-    let answer = parseInt(document.getElementById("answer").value)
-    let correct = Number("{{ num1 }}") + Number("{{ num2 }}")
+    var answer = document.getElementById("answer").value;
+    var correct = Number("{{ num1 }}") + Number("{{ num2 }}");
 
-    if(answer === correct){
-        document.getElementById("result").innerHTML = "Correct!"
-        document.getElementById("result").style.color = "green"
+    var result = document.getElementById("result");
+
+    if(answer == correct){
+        result.innerHTML = "Correct!";
+        result.className = "correct";
+
+        score = score + 1;
+        streak = streak + 1;
     }
+
     else{
-        document.getElementById("result").innerHTML = "Incorrect"
-        document.getElementById("result").style.color = "red"
+        result.innerHTML = "Incorrect";
+        result.className = "wrong";
+
+        streak = 0;
     }
+
+    document.getElementById("score").innerHTML = "Score: " + score;
+    document.getElementById("streak").innerHTML = "Streak: " + streak;
+
+    clearInterval(timerInterval);
 
     setTimeout(function(){
-        location.reload()
-    },1500)
-
+        location.reload();
+    }, 1500);
 }
 
 </script>

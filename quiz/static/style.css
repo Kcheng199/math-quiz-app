@@ -1,51 +1,146 @@
-
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #4facfe, #00f2fe);
+/* RESET */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* BACKGROUND */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(120deg, #1e3c72, #2a5298, #00c6ff);
+    background-size: 300% 300%;
+    animation: gradientMove 10s ease infinite;
+}
+
+/* ANIMATED BACKGROUND */
+@keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+/* GLASS CARD */
 .container {
-    background: white;
-    width: 350px;
-    margin: 100px auto;
-    padding: 30px;
+    width: 400px;
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    background: rgba(255,255,255,0.15);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
     text-align: center;
-    border-radius: 10px;
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+    color: white;
+    animation: fadeUp 0.8s ease;
 }
 
+/* ENTRY ANIMATION */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* TITLE */
 h1 {
-    margin-bottom: 20px;
-}
-
-.question {
-    font-size: 20px;
-    margin-bottom: 20px;
-}
-
-input {
-    padding: 10px;
-    width: 80%;
-    font-size: 16px;
+    font-size: 34px;
     margin-bottom: 15px;
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #4facfe;
+/* TIMER BADGE */
+#timer {
+    display: inline-block;
+    padding: 6px 15px;
+    border-radius: 20px;
+    background: linear-gradient(45deg, #ff4d4d, #ff0000);
+    font-weight: bold;
+    margin-bottom: 12px;
+    box-shadow: 0 0 10px rgba(255,0,0,0.5);
+}
+
+/* SCORE */
+#score, #streak {
+    font-size: 14px;
+    opacity: 0.9;
+    margin: 4px 0;
+}
+
+/* QUESTION */
+.question {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+/* INPUT */
+input {
+    width: 90%;
+    padding: 12px;
+    border-radius: 10px;
     border: none;
-    color: white;
+    outline: none;
     font-size: 16px;
-    border-radius: 5px;
+    margin-top: 10px;
+    background: rgba(255,255,255,0.2);
+    color: white;
+}
+
+/* INPUT FOCUS */
+input:focus {
+    box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* BUTTON */
+button {
+    margin-top: 20px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
     cursor: pointer;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    color: white;
+    transition: 0.3s;
 }
 
+/* BUTTON HOVER */
 button:hover {
-    background-color: #007bff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
+/* RESULT TEXT */
 #result {
     margin-top: 15px;
+    font-size: 18px;
     font-weight: bold;
+}
+
+/* GLOW EFFECT ON CORRECT */
+.correct {
+    color: #00ffcc;
+    text-shadow: 0 0 10px #00ffcc;
+}
+
+/* SHAKE ON WRONG */
+.wrong {
+    color: #ff4d4d;
+    animation: shake 0.3s;
+}
+
+/* SHAKE ANIMATION */
+@keyframes shake {
+    0% {transform: translateX(0);}
+    25% {transform: translateX(-5px);}
+    50% {transform: translateX(5px);}
+    75% {transform: translateX(-5px);}
+    100% {transform: translateX(0);}
 }
